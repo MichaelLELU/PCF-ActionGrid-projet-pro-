@@ -1,6 +1,6 @@
 import { IInputs } from "./generated/ManifestTypes";
 import { ActionGridConfig, DataSet } from "./types";
-import { getBooleanRecordValue, isEmpty } from "./valueHelpers";
+import { getBooleanRecordValue, getRecordStringValue, isEmpty } from "./valueHelpers";
 import { updatePhoneForRecord } from "./phoneAction";
 
 const EXISTING_SUFFIX = " (existant)";
@@ -65,6 +65,45 @@ export function renderGrid(
 
             const columnName = column.name;
             const value = record.getFormattedValue(columnName);
+
+            if (columnName === config.photoColumn) {
+                const photoUrl = getRecordStringValue(record, columnName);
+
+                if (photoUrl) {
+                    const img = document.createElement("img");
+                    img.src = photoUrl;
+                    img.alt = "Photo";
+                    img.style.width = "36px";
+                    img.style.height = "36px";
+                    img.style.borderRadius = "50%";
+                    img.style.objectFit = "cover";
+
+                    td.appendChild(img);
+                }
+
+                row.appendChild(td);
+                return;
+            }
+
+            if (columnName === config.linkedInColumn) {
+                const linkedInUrl = getRecordStringValue(record, columnName);
+
+                if (linkedInUrl) {
+                    const link = document.createElement("a");
+                    link.href = linkedInUrl;
+                    link.target = "_blank";
+                    link.rel = "noopener noreferrer";
+                    link.innerText = "in";
+                    link.style.fontWeight = "bold";
+                    link.style.fontSize = "16px";
+                    link.style.textDecoration = "none";
+
+                    td.appendChild(link);
+                }
+
+                row.appendChild(td);
+                return;
+            }
 
             if (columnName === config.targetColumn && isEmpty(value)) {
                 const hasIt = getBooleanRecordValue(record, config.hasItColumn);

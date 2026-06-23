@@ -1,10 +1,10 @@
-<?xml version="1.1" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <manifest>
 
   <control
       namespace="MichLink"
       constructor="ActionGrid"
-      version="1.0.2"
+      version="1.0.3"
       display-name-key="ActionGrid"
       description-key="Generic Action Grid"
       control-type="standard">
@@ -48,6 +48,22 @@
         name="HasIt"
         display-name-key="Has It Column Name"
         description-key="Logical name of has Boolean column"
+        of-type="SingleLine.Text"
+        usage="input"
+        required="false" />
+
+    <property
+        name="PhotoColumn"
+        display-name-key="Photo Column"
+        description-key="Logical name of photo URL column"
+        of-type="SingleLine.Text"
+        usage="input"
+        required="false" />
+
+    <property
+        name="LinkedInColumn"
+        display-name-key="LinkedIn Column"
+        description-key="Logical name of LinkedIn URL column"
         of-type="SingleLine.Text"
         usage="input"
         required="false" />

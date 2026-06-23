@@ -5,4 +5,6 @@ export interface ActionGridConfig {
     targetColumn: string;
     emptyLabel: string;
     hasItColumn: string;
+    photoColumn: string;
+    linkedInColumn: string;
 }

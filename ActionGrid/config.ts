@@ -7,6 +7,8 @@ export function getConfig(context: ComponentFramework.Context<IInputs>): ActionG
     return {
         targetColumn: context.parameters.TargetColumn.raw?.trim() || "",
         emptyLabel: context.parameters.EmptyLabel.raw?.trim() || DEFAULT_EMPTY_LABEL,
-        hasItColumn: context.parameters.HasIt.raw?.trim() || ""
+        hasItColumn: context.parameters.HasIt.raw?.trim() || "",
+        photoColumn: context.parameters.PhotoColumn.raw?.trim() || "",
+        linkedInColumn: context.parameters.LinkedInColumn.raw?.trim() || ""
     };
 }

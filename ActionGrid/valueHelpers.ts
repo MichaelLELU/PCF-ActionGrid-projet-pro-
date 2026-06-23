@@ -15,3 +15,16 @@ export function getBooleanRecordValue(record: EntityRecord, columnName: string):
         rawValue === "1" ||
         rawValue === 1;
 }
+
+export function getRecordStringValue(
+    record: ComponentFramework.PropertyHelper.DataSetApi.EntityRecord,
+    columnName: string
+): string {
+    if (!columnName) return "";
+
+    const formattedValue = record.getFormattedValue(columnName);
+    if (formattedValue) return formattedValue;
+
+    const rawValue = record.getValue(columnName);
+    return rawValue ? String(rawValue) : "";
+}
