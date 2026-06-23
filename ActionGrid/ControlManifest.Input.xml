@@ -1,0 +1,65 @@
+<?xml version="1.1" encoding="utf-8" ?>
+<manifest>
+
+  <control
+      namespace="MichLink"
+      constructor="ActionGrid"
+      version="1.0.2"
+      display-name-key="ActionGrid"
+      description-key="Generic Action Grid"
+      control-type="standard">
+
+    <external-service-usage enabled="false">
+    </external-service-usage>
+
+    <data-set
+        name="sampleDataSet"
+        display-name-key="Dataset_Display_Key">
+    </data-set>
+
+    <!-- Champ CRM à mettre à jour -->
+    <property
+        name="TargetColumn"
+        display-name-key="Target Column"
+        description-key="Logical name of target field"
+        of-type="SingleLine.Text"
+        usage="input"
+        required="true" />
+
+    <!-- Texte affiché avant le clic -->
+    <property
+        name="EmptyLabel"
+        display-name-key="Empty Label"
+        description-key="Text displayed when field is empty"
+        of-type="SingleLine.Text"
+        usage="input"
+        required="false" />
+
+    <!-- Nom de la Custom API -->
+    <property
+        name="CustomApiName"
+        display-name-key="Custom API Name"
+        description-key="Dataverse Custom API name"
+        of-type="SingleLine.Text"
+        usage="input"
+        required="false" />
+
+    <property
+        name="HasIt"
+        display-name-key="Has It Column Name"
+        description-key="Logical name of has Boolean column"
+        of-type="SingleLine.Text"
+        usage="input"
+        required="false" />
+
+    <resources>
+      <code path="index.ts" order="1"/>
+    </resources>
+
+    <feature-usage>
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+
+  </control>
+
+</manifest>
