@@ -7,4 +7,5 @@ export interface ActionGridConfig {
     hasItColumn: string;
     photoColumn: string;
     linkedInColumn: string;
+    defaultAvatarUrl: string;
 }

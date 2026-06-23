@@ -4,7 +4,7 @@
   <control
       namespace="MichLink"
       constructor="ActionGrid"
-      version="1.0.3"
+      version="1.0.4"
       display-name-key="ActionGrid"
       description-key="Generic Action Grid"
       control-type="standard">
@@ -48,6 +48,14 @@
         name="HasIt"
         display-name-key="Has It Column Name"
         description-key="Logical name of has Boolean column"
+        of-type="SingleLine.Text"
+        usage="input"
+        required="false" />
+
+    <property
+        name="DefaultAvatarUrl"
+        display-name-key="Default Avatar Url"
+        description-key="Default avatar image URL when photo column is empty"
         of-type="SingleLine.Text"
         usage="input"
         required="false" />

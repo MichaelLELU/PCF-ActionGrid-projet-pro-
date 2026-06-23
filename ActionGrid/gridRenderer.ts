@@ -1,9 +1,7 @@
 import { IInputs } from "./generated/ManifestTypes";
 import { ActionGridConfig, DataSet } from "./types";
-import { getBooleanRecordValue, getRecordStringValue, isEmpty } from "./valueHelpers";
-import { updatePhoneForRecord } from "./phoneAction";
-
-const EXISTING_SUFFIX = " (existant)";
+import { getRecordStringValue } from "./valueHelpers";
+import { renderPhoneCell } from "./phoneRenderer";
 
 export function renderGrid(
     container: HTMLDivElement,
@@ -68,10 +66,11 @@ export function renderGrid(
 
             if (columnName === config.photoColumn) {
                 const photoUrl = getRecordStringValue(record, columnName);
+                const imageUrl = photoUrl || config.defaultAvatarUrl;
 
-                if (photoUrl) {
+                if (imageUrl) {
                     const img = document.createElement("img");
-                    img.src = photoUrl;
+                    img.src = imageUrl;
                     img.alt = "Photo";
                     img.style.width = "36px";
                     img.style.height = "36px";
@@ -105,42 +104,21 @@ export function renderGrid(
                 return;
             }
 
-            if (columnName === config.targetColumn && isEmpty(value)) {
-                const hasIt = getBooleanRecordValue(record, config.hasItColumn);
-                const label = hasIt
-                    ? `${config.emptyLabel}${EXISTING_SUFFIX}`
-                    : config.emptyLabel;
+            if (columnName === config.targetColumn) {
+                renderPhoneCell(
+                    td,
+                    context,
+                    dataset,
+                    recordId,
+                    value,
+                    config
+                );
 
-                const link = document.createElement("a");
-                link.href = "#";
-                link.innerText = label;
-                link.style.cursor = "pointer";
-
-                link.onclick = async (event) => {
-                    event.preventDefault();
-
-                    link.innerText = "Recherche...";
-                    link.style.pointerEvents = "none";
-
-                    try {
-                        await updatePhoneForRecord(
-                            context,
-                            dataset,
-                            recordId,
-                            config.targetColumn
-                        );
-                    } catch (error) {
-                        console.error(error);
-                        link.innerText = "Erreur";
-                        link.style.pointerEvents = "auto";
-                    }
-                };
-
-                td.appendChild(link);
-            } else {
-                td.innerText = value || "";
+                row.appendChild(td);
+                return;
             }
 
+            td.innerText = value || "";
             row.appendChild(td);
         });
 

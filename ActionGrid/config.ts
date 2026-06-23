@@ -9,6 +9,7 @@ export function getConfig(context: ComponentFramework.Context<IInputs>): ActionG
         emptyLabel: context.parameters.EmptyLabel.raw?.trim() || DEFAULT_EMPTY_LABEL,
         hasItColumn: context.parameters.HasIt.raw?.trim() || "",
         photoColumn: context.parameters.PhotoColumn.raw?.trim() || "",
-        linkedInColumn: context.parameters.LinkedInColumn.raw?.trim() || ""
+        linkedInColumn: context.parameters.LinkedInColumn.raw?.trim() || "",
+        defaultAvatarUrl: context.parameters.DefaultAvatarUrl.raw?.trim() || ""
     };
 }
